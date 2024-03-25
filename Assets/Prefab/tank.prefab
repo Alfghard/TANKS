@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e6367db6e1f821a42bb9d229065758c9, type: 3}
       propertyPath: m_Name
-      value: tank (1)
+      value: tank
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204e805abf5d3e9449a250313217ba09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 5973886160324203209}
   speed: 100
 --- !u!65 &2354559822704043049
 BoxCollider:
