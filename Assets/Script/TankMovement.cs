@@ -25,7 +25,7 @@ public class TankMovement : MonoBehaviour
         Quaternion turn = Quaternion.Euler(0f, turnAmount, 0f);
         rb.MoveRotation(rb.rotation * turn);
 
-        // Saut (si nécessaire)
+        // Saut
         if (Input.GetMouseButtonDown(0))
         {
             rb.AddForce(Vector3.up * 10000);

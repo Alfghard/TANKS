@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class MissileMovementReflect : MonoBehaviour
 {
-    public float speed = 10f;
+    [SerializeField] public float speed = 10f;
+    [SerializeField] public int nbRebond = 1;
     private Vector3 currentDirection;
+    
 
     void Start()
     {
@@ -26,7 +28,22 @@ public class MissileMovementReflect : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Calcule le symétrique de la direction actuelle par rapport à la normale de la collision
-        currentDirection = Vector3.Reflect(currentDirection, collision.contacts[0].normal).normalized;
+        if (collision.gameObject.tag == "Wall")
+        {
+            if (nbRebond <= 0)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                nbRebond--;
+                // Calcule le symétrique de la direction actuelle par rapport à la normale de la collision
+                currentDirection = Vector3.Reflect(currentDirection, collision.contacts[0].normal).normalized;
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
