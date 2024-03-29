@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TankMovement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private float speed = 5f; // Vitesse de déplacement
-    [SerializeField] private float turnSpeed = 180f; // Vitesse de rotation
+    [SerializeField] private Rigidbody rb;               // RigidBody du tank
+    [SerializeField] private float speed = 35f;          // Vitesse de déplacement du tank
+    [SerializeField] private float libertyAngle = 30f;   // Angle de liberté permis pour le déplacement
+    [SerializeField] private float smoothAngle = 0.13f;  // Temps d'exécution de la rotation du tank
+    private float turnSpeed = 0f;                        // Vitesse de rotation du tank
 
     void Start()
     {
@@ -15,20 +15,42 @@ public class TankMovement : MonoBehaviour
 
     void Update()
     {
-        // Mouvement d'avant en arrière
-        float moveAmount = Input.GetAxis("Vertical") * speed;
-        Vector3 move = transform.forward * moveAmount;
-        rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
-
-        // Rotation
-        float turnAmount = Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime;
-        Quaternion turn = Quaternion.Euler(0f, turnAmount, 0f);
-        rb.MoveRotation(rb.rotation * turn);
+        Movement();
 
         // Saut
         if (Input.GetMouseButtonDown(0))
         {
             rb.AddForce(Vector3.up * 10000);
+        }
+    }
+
+    private void Movement()
+    {
+        // Obtient les inputs du joystick ou des flèches directionnelles
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        // Génère le vecteur du mouvement du joystick
+        Vector3 direction = new Vector3(horizontal, 0f, vertical);
+
+        // N'exécute le mouvement que si une norme minimale de direction est enclenchée
+        if (direction.magnitude >= 0.1f)
+        {
+            // Calcule l'angle de rotation nécessaire pour faire face à la direction
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSpeed, smoothAngle);
+            rb.MoveRotation(Quaternion.Euler(0f, angle, 0f));  // Fait pivoter le tank
+
+            // Avance seulement si le tank est orienté presque dans la bonne direction, défini par un angle de liberté
+            if (Vector3.Angle(transform.forward, direction) < libertyAngle)
+            {
+                // Calcule la norme de la vitesse entre 0 et 1 selon l'inclinaison du joystick
+                float norme = Mathf.Min(direction.magnitude, 1f);
+
+                // Déplace le rigid body 
+                Vector3 move = transform.forward * (float)norme * speed;
+                rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
+            }
         }
     }
 }
