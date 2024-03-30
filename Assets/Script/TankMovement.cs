@@ -22,6 +22,36 @@ public class TankMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * 10000);
         }
+
+        // Détecte l'appui sur n'importe quelle touche caractère
+        foreach (char c in Input.inputString)
+        {
+            Debug.Log($"Touche pressée: {c}");
+        }
+
+        // Exemples pour des touches spécifiques non caractères
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Touche pressée: Espace");
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            Debug.Log("Touche pressée: Flèche gauche");
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            Debug.Log("Touche pressée: Flèche droite");
+        }
+        // Ajoutez ici des vérifications supplémentaires si nécessaire
+        if (Input.GetButtonDown("Jump"))
+        {
+            Debug.Log("Saut demandé !");
+        }
+
+        if (Input.GetButtonUp("Fire1"))
+        {
+            Debug.Log("Tir terminé !");
+        }
     }
 
     private void Movement()

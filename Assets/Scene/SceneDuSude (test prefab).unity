@@ -298,6 +298,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1861993441}
   m_SourcePrefab: {fileID: 100100000, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
+--- !u!4 &213143679 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2414714373277650101, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
+  m_PrefabInstance: {fileID: 7606464012974050494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &238013841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -888,7 +893,7 @@ Transform:
   m_GameObject: {fileID: 1653846743}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.92, y: -3.382588, z: -0.11}
+  m_LocalPosition: {x: 0.92, y: -3.382588, z: -16.2}
   m_LocalScale: {x: 30.47257, y: 30.47257, z: 30.47257}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1283,6 +1288,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7527728495720411120, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
+      propertyPath: turret
+      value: 
+      objectReference: {fileID: 213143679}
     - target: {fileID: 7527728495720411120, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
       propertyPath: firePoint
       value: 
