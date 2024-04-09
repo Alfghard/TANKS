@@ -379,13 +379,61 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1564227129589057000, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
       propertyPath: m_text
-      value: 'Main Menu
+      value: 'Play
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 1582571412863096560, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
       propertyPath: m_Name
       value: MainMenuButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857270069570821104, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857270069570821104, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857270069570821104, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6039734
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857270069570821104, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857270069570821104, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857270069570821104, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857270069570821104, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990869424621114056, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990869424621114056, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990869424621114056, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990869424621114056, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990869424621114056, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2530900294022344321, guid: 4a9eb85ed086aab42b9d6c860d68f4d5, type: 3}
       propertyPath: m_Name
@@ -694,8 +742,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 7e181fd161a9d4c41a7d09c87806d01d, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.6039216, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

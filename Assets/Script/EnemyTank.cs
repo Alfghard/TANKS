@@ -14,7 +14,7 @@ public class EnemyTank : MonoBehaviour
 
     void Update()
     {
-        bool paused = Pause.getPauseState();    //Récupère la valeur de paused
+        bool paused = Pause.isGamePaused();    //Récupère la valeur de paused
         if (!paused) {
             TurretMovement();
         }

@@ -23,7 +23,7 @@ public class Pause : MonoBehaviour
 		paused = !paused;
 	}
 
-	public static bool getPauseState ()
+	public static bool isGamePaused ()
 	{
 		return paused;
 	}
