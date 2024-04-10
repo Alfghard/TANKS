@@ -51,6 +51,9 @@ public class PlayerTank : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
                 {
                     //rb.AddForce(Vector3.up * 10000); //pour sauter
+                    GameObject missile = Instantiate(missilePrefab, firePoint.position, firePoint.rotation);
+                    missile.transform.Rotate(180,0,0);
+
                 }
         }
     }
