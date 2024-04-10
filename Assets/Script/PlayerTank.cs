@@ -14,7 +14,7 @@ public class PlayerTank : MonoBehaviour
 
     // Variables de mouvement
     [SerializeField] private float tankSpeed = 35f;             // Vitesse de d�placement du tank
-    [SerializeField] private float angleThreshold = 30f;        // Angle de libert� permis pour autoriser le d�placement
+    [SerializeField] private float angleThreshold =  0f;        // Angle de libert� permis pour autoriser le d�placement
     [SerializeField] private float tankSmoothness = 0.12f;      // Temps d'ex�cution de la rotation du tank
     
     // Variables de tir et de la tourelle
@@ -38,16 +38,19 @@ public class PlayerTank : MonoBehaviour
 
     
     void Update()
-    {
-        TankMovement();     // M�canisme de mouvement de la base du tank
-        //TurretMovement_Manette();   // M�canisme de rotation de la tourelle du tank avec la manette
-        TurretMovement_Souris();       // M�canisme de rotation de la tourelle du tank avec la souris
-        Shoot();            // M�canisme de tir
+    {    
 
-        // Saut
-        if (Input.GetMouseButtonDown(0))
+       
         {
             rb.AddForce(Vector3.up * 10000);
+        bool paused = Pause.isGamePaused();    //Récupère la valeur de paused
+        if (!paused) {
+            TankMovement();     // M�canisme de mouvement de la base du tank
+            //TurretMovement_Manette();   // M�canisme de rotation de la tourelle du tank
+            TurretMovement_Souris();        // M�canisme de rotation de la tourelle du tank avec la souris
+            Shoot();            // M�canisme de tir
+             // Saut
+            if (Input.GetMouseButtonDown(0))
         }
     }
 
