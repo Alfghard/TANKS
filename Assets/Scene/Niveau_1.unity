@@ -2549,6 +2549,10 @@ PrefabInstance:
       propertyPath: turret
       value: 
       objectReference: {fileID: 943812055}
+    - target: {fileID: 6553816822766741386, guid: ce41c71b5eaf8984d8cce740be1a4d0c, type: 3}
+      propertyPath: playerTank
+      value: 
+      objectReference: {fileID: 1449978677}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3374,6 +3378,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1449978677 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5469627432873346257, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
+  m_PrefabInstance: {fileID: 463533889}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1517076491
 GameObject:
   m_ObjectHideFlags: 0

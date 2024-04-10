@@ -6,8 +6,10 @@ public class EnemyTank : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform turret;
+    [SerializeField] private Transform playerTank;
     float turretAngle = 0; 
     float baseAngle = 0;
+    float turretCurrentSpeed = 0;
 
     void Start()
     {
@@ -39,7 +41,14 @@ public class EnemyTank : MonoBehaviour
 
     private void TurretMovement()   //effectue un mouvement de rotation constant du canon
     {
-        turretAngle = (turretAngle - 1) % 360;
+        float playerX = playerTank.position.x;
+        float playerZ = playerTank.position.z;
+
+        float thisX = rb.position.x;
+        float thisZ = rb.position.z;
+
+        float targetAngle = Mathf.Atan2(thisX-playerX,thisZ-playerZ) * Mathf.Rad2Deg;
+        turretAngle = Mathf.SmoothDampAngle(turret.eulerAngles.y, targetAngle, ref turretCurrentSpeed, 0);
         turret.rotation = Quaternion.Euler(0f, turretAngle, 0f);
     }
 }
