@@ -48,7 +48,7 @@ public class PlayerTank : MonoBehaviour
             TurretMovement_Souris();        // M�canisme de rotation de la tourelle du tank avec la souris
             Shoot();            // M�canisme de tir
              // tirer
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) )
                 {
                     //rb.AddForce(Vector3.up * 10000); //pour sauter
                     GameObject missile = Instantiate(missilePrefab, firePoint.position, firePoint.rotation);
