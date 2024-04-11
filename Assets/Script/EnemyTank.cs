@@ -64,6 +64,5 @@ public class EnemyTank : MonoBehaviour
             missile.transform.Rotate(0, 0, 0);
             timer = 0;
         }
-        Debug.Log(timer);
     }
 }
