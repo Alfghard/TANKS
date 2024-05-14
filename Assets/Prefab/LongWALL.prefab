@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341967567862620523, guid: 257b359c7e8d1bd409e644374617fcb9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 32
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1341967567862620523, guid: 257b359c7e8d1bd409e644374617fcb9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7464461058982426448, guid: 257b359c7e8d1bd409e644374617fcb9, type: 3}
       propertyPath: m_Name
-      value: Cube (9) Variant
+      value: LongWALL
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

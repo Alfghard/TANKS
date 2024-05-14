@@ -3,28 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
+
 public class PlayerTank : MonoBehaviour
 {
     // Rigid body, Transforms et GameObject
     [SerializeField] private Rigidbody rb;                      // RigidBody du tank
     [SerializeField] private Transform turret;                  // objet Tourelle
-    [SerializeField] private Transform firePoint;               // Point à la sortie du canon
-    [SerializeField] private GameObject missilePrefab;          // Missile à tirer
+    [SerializeField] private Transform firePoint;               // Point ï¿½ la sortie du canon
+    [SerializeField] private GameObject missilePrefab;          // Missile ï¿½ tirer
 
     // Variables de mouvement
-    [SerializeField] private float tankSpeed = 35f;             // Vitesse de déplacement du tank
-    [SerializeField] private float angleThreshold = 30f;        // Angle de liberté permis pour autoriser le déplacement
-    [SerializeField] private float tankSmoothness = 0.12f;      // Temps d'exécution de la rotation du tank
+    [SerializeField] private float tankSpeed = 35f;             // Vitesse de dï¿½placement du tank
+    [SerializeField] private float angleThreshold =  0f;        // Angle de libertï¿½ permis pour autoriser le dï¿½placement
+    [SerializeField] private float tankSmoothness = 0.12f;      // Temps d'exï¿½cution de la rotation du tank
     
     // Variables de tir et de la tourelle
-    [SerializeField] private float turretSmoothness = 0.05f;    // Temps d’exécution de la rotation de la tourelle
+    [SerializeField] private float turretSmoothness = 0.05f;    // Temps dï¿½exï¿½cution de la rotation de la tourelle
     [SerializeField] private float shootThreshold = 0.5f;       // Seuil d'activation du tir du bouton R2 entre 0 compris et 1 non compris
 
-    // Variables d'états (ne pas toucher)
-    private float turretAngle;                  // État de l'angle de la tourelle
-    private float baseCurrentSpeed = 0f;        // État de la vitesse angulaire de la base du tank
-    private float turretCurrentSpeed = 0f;      // État de la vitesse angulaire de la tourelle du tank
-    private float shootTriggerAxis = 0f;        // État de la valeur précédente de l'axe du bouton R2
+    [SerializeField] private GameObject Plan;                   
+
+    // Variables d'ï¿½tats (ne pas toucher)
+    private float turretAngle;                  // ï¿½tat de l'angle de la tourelle
+    private float baseCurrentSpeed = 0f;        // ï¿½tat de la vitesse angulaire de la base du tank
+    private float turretCurrentSpeed = 0f;      // ï¿½tat de la vitesse angulaire de la tourelle du tank
+    private float shootTriggerAxis = 0f;        // ï¿½tat de la valeur prï¿½cï¿½dente de l'axe du bouton R2
 
 
     void Start()
@@ -35,50 +38,59 @@ public class PlayerTank : MonoBehaviour
 
     
     void Update()
-    {
-        TankMovement();     // Mécanisme de mouvement de la base du tank
-        TurretMovement();   // Mécanisme de rotation de la tourelle du tank
-        Shoot();            // Mécanisme de tir
+    {    
 
-        // Saut
-        if (Input.GetMouseButtonDown(0))
-        {
-            rb.AddForce(Vector3.up * 10000);
+       
+        bool paused = Pause.isGamePaused();    //RÃ©cupÃ¨re la valeur de paused
+        if (!paused) {
+            TankMovement();     // Mï¿½canisme de mouvement de la base du tank
+            //TurretMovement_Manette();   // Mï¿½canisme de rotation de la tourelle du tank
+            TurretMovement_Souris();        // Mï¿½canisme de rotation de la tourelle du tank avec la souris
+            Shoot();            // Mï¿½canisme de tir
+             // tirer
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) )
+                {
+                    //rb.AddForce(Vector3.up * 10000); //pour sauter
+                    GameObject missile = Instantiate(missilePrefab, firePoint.position, firePoint.rotation);
+                    missile.transform.Rotate(180,0,0);
+                    Debug.Log("Fire");
+
+                }
         }
     }
 
     private void TankMovement()
     {
-        // Obtient les inputs du joystick ou des flèches directionnelles
+        // Obtient les inputs du joystick ou des flï¿½ches directionnelles
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        // Génère le vecteur du mouvement du joystick
+        // Gï¿½nï¿½re le vecteur du mouvement du joystick
         Vector3 direction = new Vector3(horizontal, 0f, vertical);
 
-        // N'exécute le mouvement que si une norme minimale de direction est enclenchée
+        // N'exï¿½cute le mouvement que si une norme minimale de direction est enclenchï¿½e
         if (direction.magnitude >= 0.1f)
         {
-            // Calcule l'angle de rotation nécessaire pour faire face à la direction
+            // Calcule l'angle de rotation nï¿½cessaire pour faire face ï¿½ la direction
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref baseCurrentSpeed, tankSmoothness);
             rb.MoveRotation(Quaternion.Euler(0f, angle, 0f));  // Fait pivoter le tank
             turret.rotation = Quaternion.Euler(0f, turretAngle, 0f);
 
-            // Avance seulement si le tank est orienté presque dans la bonne direction, défini par un angle de liberté
+            // Avance seulement si le tank est orientï¿½ presque dans la bonne direction, dï¿½fini par un angle de libertï¿½
             if (Vector3.Angle(transform.forward, direction) < angleThreshold)
             {
                 // Calcule la norme de la vitesse entre 0 et 1 selon l'inclinaison du joystick
                 float norme = Mathf.Min(direction.magnitude, 1f);
 
-                // Déplace le rigid body 
+                // Dï¿½place le rigid body 
                 Vector3 move = transform.forward * (float)norme * tankSpeed;
                 rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
             }
         }
     }
 
-    private void TurretMovement()
+    private void TurretMovement_Manette()
     {
         float rJoyX = -Input.GetAxis("RJoyX");
         float rJoyY = Input.GetAxis("RJoyY");
@@ -87,7 +99,7 @@ public class PlayerTank : MonoBehaviour
 
         if (shootDir.magnitude >= 0.1f)
         {
-            // Calcule l'angle cible basé sur la direction du joystick
+            // Calcule l'angle cible basï¿½ sur la direction du joystick
             float targetAngle = Mathf.Atan2(shootDir.x, shootDir.z) * Mathf.Rad2Deg;
             // Obtient l'angle actuel de la tourelle
             turretAngle = Mathf.SmoothDampAngle(turret.eulerAngles.y, targetAngle, ref turretCurrentSpeed, turretSmoothness);
@@ -97,14 +109,39 @@ public class PlayerTank : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    private void TurretMovement_Souris()
     {
-        // Si le bouton RTrigger est enclenché
+    Vector3 screenPosition;
+    Vector3 worldPosition;
+
+
+    screenPosition = Input.mousePosition;
+    screenPosition.z = Camera.main.nearClipPlane + 1;
+
+    worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+
+     Vector3 direction = turret.position - worldPosition;
+     direction.z += direction.y*Mathf.Cos(60 * Mathf.Deg2Rad);
+     //direction.x += direction.y*Mathf.Sin(60 * Mathf.Deg2Rad);
+     
+    Vector3 projection = Vector3.ProjectOnPlane(direction, Plan.transform.up);
+    
+    turret.rotation = Quaternion.LookRotation(projection);
+    //Debug.Log(direction);
+    //Debug.Log(projection);
+    
+    }
+
+
+
+    public void Shoot()
+    {
+        // Si le bouton RTrigger est enclenchï¿½
         if (Input.GetButton("Fire"))
         {
             float normShootAxis = (Input.GetAxis("RTrigger") + 1) / 2;
             Debug.Log($"normShootAxis: {normShootAxis}");
-            // Tire si l'axe du bouton dépasse 
+            // Tire si l'axe du bouton dï¿½passe 
             if (shootTriggerAxis <= shootThreshold && normShootAxis > shootThreshold)
             {
                 GameObject missile = Instantiate(missilePrefab, firePoint.position, firePoint.rotation);
