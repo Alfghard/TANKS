@@ -1371,6 +1371,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4979280830913594187, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
+      propertyPath: Plan
+      value: 
+      objectReference: {fileID: 2077372753}
+    - target: {fileID: 4979280830913594187, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -2549,6 +2553,10 @@ PrefabInstance:
       propertyPath: turret
       value: 
       objectReference: {fileID: 943812055}
+    - target: {fileID: 6553816822766741386, guid: ce41c71b5eaf8984d8cce740be1a4d0c, type: 3}
+      propertyPath: playerTank
+      value: 
+      objectReference: {fileID: 1449978677}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3374,6 +3382,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1449978677 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5469627432873346257, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
+  m_PrefabInstance: {fileID: 463533889}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1517076491
 GameObject:
   m_ObjectHideFlags: 0
@@ -3534,7 +3547,7 @@ GameObject:
   - component: {fileID: 1563495914}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

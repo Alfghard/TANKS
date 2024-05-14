@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 8839662238418083630}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000021855694, y: -0.00000019470718, z: 4.316693e-15, w: -1}
-  m_LocalPosition: {x: 0, y: -0.00077, z: -0.02405}
+  m_LocalPosition: {x: 0.0011, y: -0.0016, z: -0.02767}
   m_LocalScale: {x: 0.006956522, y: 0.006956522, z: 0.006956522}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -177,7 +177,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &4979280830913594187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,3 +199,4 @@ MonoBehaviour:
   tankSmoothness: 0.13
   turretSmoothness: 0.05
   shootThreshold: 0.5
+  Plan: {fileID: 0}

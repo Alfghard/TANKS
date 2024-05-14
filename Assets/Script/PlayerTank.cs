@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
+
 public class PlayerTank : MonoBehaviour
 {
     // Rigid body, Transforms et GameObject
@@ -20,6 +21,8 @@ public class PlayerTank : MonoBehaviour
     [SerializeField] private float turretSmoothness = 0.05f;    // Temps d�ex�cution de la rotation de la tourelle
     [SerializeField] private float shootThreshold = 0.5f;       // Seuil d'activation du tir du bouton R2 entre 0 compris et 1 non compris
 
+    [SerializeField] private GameObject Plan;                   
+
     // Variables d'�tats (ne pas toucher)
     private float turretAngle;                  // �tat de l'angle de la tourelle
     private float baseCurrentSpeed = 0f;        // �tat de la vitesse angulaire de la base du tank
@@ -35,12 +38,24 @@ public class PlayerTank : MonoBehaviour
 
     
     void Update()
-    {
+    {    
+
+       
         bool paused = Pause.isGamePaused();    //Récupère la valeur de paused
         if (!paused) {
             TankMovement();     // M�canisme de mouvement de la base du tank
-            TurretMovement();   // M�canisme de rotation de la tourelle du tank
+            //TurretMovement_Manette();   // M�canisme de rotation de la tourelle du tank
+            TurretMovement_Souris();        // M�canisme de rotation de la tourelle du tank avec la souris
             Shoot();            // M�canisme de tir
+             // tirer
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) )
+                {
+                    //rb.AddForce(Vector3.up * 10000); //pour sauter
+                    GameObject missile = Instantiate(missilePrefab, firePoint.position, firePoint.rotation);
+                    missile.transform.Rotate(180,0,0);
+                    Debug.Log("Fire");
+
+                }
         }
     }
 
@@ -75,7 +90,7 @@ public class PlayerTank : MonoBehaviour
         }
     }
 
-    private void TurretMovement()
+    private void TurretMovement_Manette()
     {
         float rJoyX = -Input.GetAxis("RJoyX");
         float rJoyY = Input.GetAxis("RJoyY");
@@ -94,7 +109,32 @@ public class PlayerTank : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    private void TurretMovement_Souris()
+    {
+    Vector3 screenPosition;
+    Vector3 worldPosition;
+
+
+    screenPosition = Input.mousePosition;
+    screenPosition.z = Camera.main.nearClipPlane + 1;
+
+    worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+
+     Vector3 direction = turret.position - worldPosition;
+     direction.z += direction.y*Mathf.Cos(60 * Mathf.Deg2Rad);
+     //direction.x += direction.y*Mathf.Sin(60 * Mathf.Deg2Rad);
+     
+    Vector3 projection = Vector3.ProjectOnPlane(direction, Plan.transform.up);
+    
+    turret.rotation = Quaternion.LookRotation(projection);
+    //Debug.Log(direction);
+    //Debug.Log(projection);
+    
+    }
+
+
+
+    public void Shoot()
     {
         // Si le bouton RTrigger est enclench�
         if (Input.GetButton("Fire"))
