@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   nbRebond: 1
+  rb: {fileID: 3748184603802090180}
+  Hole: {fileID: 243793783310026544, guid: b0faf218c9f020e479282c9c554c361b, type: 3}
 --- !u!65 &310631745667484550
 BoxCollider:
   m_ObjectHideFlags: 0
