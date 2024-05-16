@@ -53,6 +53,7 @@ public class PlayerTank : MonoBehaviour
                     //rb.AddForce(Vector3.up * 10000); //pour sauter
                     GameObject missile = Instantiate(missilePrefab, firePoint.position, firePoint.rotation);
                     missile.transform.Rotate(180,0,0);
+                    Debug.Log("Fire");
 
                 }
         }
@@ -126,7 +127,7 @@ public class PlayerTank : MonoBehaviour
     Vector3 projection = Vector3.ProjectOnPlane(direction, Plan.transform.up);
     
     turret.rotation = Quaternion.LookRotation(projection);
-    Debug.Log(direction);
+    //Debug.Log(direction);
     //Debug.Log(projection);
     
     }

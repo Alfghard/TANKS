@@ -9,20 +9,23 @@ public class MissileMovementReflect : MonoBehaviour
 
     void Start()
     {
-        // Initialise la direction du missile pour correspondre à celle du lanceur
+        // Initialise la direction du missile pour correspondre ï¿½ celle du lanceur
         currentDirection = transform.forward;
     }
 
     void Update()
     {
-        // Déplace le missile dans la direction actuelle
-        transform.Translate(currentDirection * speed * Time.deltaTime, Space.World);
-
-        // Ajuste la rotation du missile pour qu'il "regarde" vers sa direction de mouvement
-        if (currentDirection != Vector3.zero)
+        if (!Pause.isGamePaused())
         {
-            Quaternion toRotation = Quaternion.LookRotation(currentDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, speed * Time.deltaTime * 500);
+            // Dï¿½place le missile dans la direction actuelle
+            transform.Translate(currentDirection * speed * Time.deltaTime, Space.World);
+
+            // Ajuste la rotation du missile pour qu'il "regarde" vers sa direction de mouvement
+            if (currentDirection != Vector3.zero)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(currentDirection, Vector3.up);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, speed * Time.deltaTime * 500);
+            }
         }
     }
 
@@ -37,7 +40,7 @@ public class MissileMovementReflect : MonoBehaviour
             else
             {
                 nbRebond--;
-                // Calcule le symétrique de la direction actuelle par rapport à la normale de la collision
+                // Calcule le symï¿½trique de la direction actuelle par rapport ï¿½ la normale de la collision
                 currentDirection = Vector3.Reflect(currentDirection, collision.contacts[0].normal).normalized;
             }
         }
