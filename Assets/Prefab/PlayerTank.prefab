@@ -196,7 +196,7 @@ MonoBehaviour:
   missilePrefab: {fileID: 8902226305329291046, guid: aca5e6ca8f17f9d46b797f494f70044a, type: 3}
   tankSpeed: 35
   angleThreshold: 30
-  tankSmoothness: 0.13
+  tankSmoothness: 0.03
   turretSmoothness: 0.05
   shootThreshold: 0.5
   Plan: {fileID: 0}
