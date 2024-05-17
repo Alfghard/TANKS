@@ -40,6 +40,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.57
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.57
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.57
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -78,6 +90,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7939587002309309268, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_Materials.Array.data[1]
@@ -134,6 +150,10 @@ MonoBehaviour:
   playerTank: {fileID: 5469627432873346257, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
   firePoint: {fileID: 3891746481775780507}
   missilePrefab: {fileID: 8902226305329291046, guid: aca5e6ca8f17f9d46b797f494f70044a, type: 3}
+  detectionRange: 50
+  speed: 35
+  rotationSpeed: 2
+  fireInterval: 3
 --- !u!65 &5800401138308648085
 BoxCollider:
   m_ObjectHideFlags: 0
