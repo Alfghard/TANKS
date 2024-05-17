@@ -15,6 +15,7 @@ public class lancement : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.J)) {
+            Debug.Log("Script à lancer");
             generator.enabled = true;
         };
     }

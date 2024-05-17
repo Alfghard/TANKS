@@ -44,8 +44,8 @@ public class PlayerTank : MonoBehaviour
         bool paused = Pause.isGamePaused();    //Récupère la valeur de paused
         if (!paused) {
             TankMovement();     // M�canisme de mouvement de la base du tank
-            //TurretMovement_Manette();   // M�canisme de rotation de la tourelle du tank
-            //TurretMovement_Souris();        // M�canisme de rotation de la tourelle du tank avec la souris
+            TurretMovement_Manette();   // M�canisme de rotation de la tourelle du tank
+            ////TurretMovement_Souris();        // M�canisme de rotation de la tourelle du tank avec la souris
             TurretMovement_Souris2();        // M�canisme de rotation de la tourelle du tank avec la souris
 
             Shoot();            // M�canisme de tir
@@ -111,29 +111,29 @@ public class PlayerTank : MonoBehaviour
         }
     }
 
-    private void TurretMovement_Souris()
-    {
-    Vector3 screenPosition;
-    Vector3 worldPosition;
+    //private void TurretMovement_Souris()
+    //{
+    //    Vector3 screenPosition;
+    //    Vector3 worldPosition;
 
 
-    screenPosition = Input.mousePosition;
-    screenPosition.z = Camera.main.nearClipPlane + 1;
+    //    screenPosition = Input.mousePosition;
+    //    screenPosition.z = Camera.main.nearClipPlane + 1;
 
-    worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+    //    worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
 
-     Vector3 direction = turret.position - worldPosition;
-     direction.z += direction.y*Mathf.Cos(60 * Mathf.Deg2Rad);
-     //direction.x += direction.y*Mathf.Sin(60 * Mathf.Deg2Rad);
+    //     Vector3 direction = turret.position - worldPosition;
+    //     direction.z += direction.y*Mathf.Cos(60 * Mathf.Deg2Rad);
+    //     //direction.x += direction.y*Mathf.Sin(60 * Mathf.Deg2Rad);
      
-    Vector3 projection = Vector3.ProjectOnPlane(direction, Plan.transform.up);
+    //    Vector3 projection = Vector3.ProjectOnPlane(direction, Plan.transform.up);
     
     turret.rotation = Quaternion.LookRotation(projection);
     //Debug.Log(direction);
     //Debug.Log(projection);
     //Debug.Log(turret.position);
     
-    }
+    //}
 
     private void TurretMovement_Souris2(){
         Vector3  mouseInScreen = Input.mousePosition;

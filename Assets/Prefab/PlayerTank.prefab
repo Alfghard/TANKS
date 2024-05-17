@@ -41,15 +41,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4657801216042311275}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07346a131cba22342bda8c082863fea1, type: 3}
   m_Name: 
@@ -194,9 +194,9 @@ MonoBehaviour:
   turret: {fileID: 2414714373277650101}
   firePoint: {fileID: 644522057370531543}
   missilePrefab: {fileID: 8902226305329291046, guid: aca5e6ca8f17f9d46b797f494f70044a, type: 3}
-  tankSpeed: 60
+  tankSpeed: 35
   angleThreshold: 30
-  tankSmoothness: 0.13
+  tankSmoothness: 0.03
   turretSmoothness: 0.05
   shootThreshold: 0.5
   Plan: {fileID: 0}
