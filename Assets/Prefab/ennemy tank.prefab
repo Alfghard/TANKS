@@ -41,15 +41,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.57
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.57
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.57
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -147,13 +147,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4589837558072299899}
   turret: {fileID: 6688214337106168080}
-  playerTank: {fileID: 5469627432873346257, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
   firePoint: {fileID: 3891746481775780507}
   missilePrefab: {fileID: 8902226305329291046, guid: aca5e6ca8f17f9d46b797f494f70044a, type: 3}
   detectionRange: 50
-  speed: 35
-  rotationSpeed: 2
+  tankSpeed: 30
+  angleThreshold: 60
+  tankSmoothness: 0.12
+  turretSmoothness: 0.05
   fireInterval: 3
+  minMoveSpeed: 5
 --- !u!65 &5800401138308648085
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -183,9 +185,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4463159503286197198}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 50
-  m_AngularDrag: 20
+  m_Mass: 0.3
+  m_Drag: 0
+  m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
