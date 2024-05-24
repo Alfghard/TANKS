@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class EnemyTank : MonoBehaviour
@@ -18,6 +17,7 @@ public class EnemyTank : MonoBehaviour
     [SerializeField] private float minMoveSpeed = 5f;
 
     private Transform playerTank;                         // Référence au tank du joueur
+    private GameManager gameManager;                      // Référence au GameManager
     private float fireTimer = 0;
     private float baseCurrentSpeed = 0f;                  // État de la vitesse angulaire de la base du tank
     private float turretAngle;                            // État de l'angle de la tourelle
@@ -33,6 +33,12 @@ public class EnemyTank : MonoBehaviour
         else
         {
             Debug.LogError("Player Tank not found. Make sure the player tank has the tag 'Player'", gameObject);
+        }
+
+        gameManager = FindObjectOfType<GameManager>();
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager not found. Make sure there is a GameManager script in the scene.", gameObject);
         }
 
         if (rb == null)
@@ -73,6 +79,7 @@ public class EnemyTank : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Missile"))
         {
+            gameManager.AddScore(10); // Ajouter 10 points lorsque le tank ennemi est détruit
             Destroy(gameObject);
         }
     }
@@ -116,8 +123,6 @@ public class EnemyTank : MonoBehaviour
         }
     }
 
-
-
     private void TurretMovement()
     {
         // Calcule la direction vers le joueur
@@ -136,7 +141,6 @@ public class EnemyTank : MonoBehaviour
             turret.rotation = Quaternion.Euler(0f, turretAngle, 0f);
         }
     }
-
 
     private void Shoot()
     {

@@ -84,7 +84,7 @@ public class PlayerTank : MonoBehaviour
                 float norme = Mathf.Min(direction.magnitude, 1f);
 
                 // D�place le rigid body 
-                Vector3 move = transform.forward * (float)norme * tankSpeed;
+                Vector3 move = transform.forward * norme * tankSpeed;
                 rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
             }
         }
