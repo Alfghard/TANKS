@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class MissileMovementReflect : MonoBehaviour
+public class MissileMovement : MonoBehaviour
 {
     [SerializeField] public float speed = 10f;
     [SerializeField] public int nbRebond = 1;
-    private Vector3 currentDirection;
+    public Vector3 currentDirection { get; private set; }
     
 
     void Start()
     {
-        // Initialise la direction du missile pour correspondre � celle du lanceur
+        // Initialise la direction du missile pour correspondre a celle du lanceur
         currentDirection = transform.forward;
     }
 
@@ -29,7 +29,7 @@ public class MissileMovementReflect : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Wall")
         {

@@ -206,8 +206,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4657801216042311275, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 539428504}
   m_SourcePrefab: {fileID: 100100000, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
+--- !u!1 &539428503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4657801216042311275, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
+  m_PrefabInstance: {fileID: 66088594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &539428504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539428503}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb59a72b522e846a899fe1efdd2843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 539428506}
+  turret: {fileID: 1720378884}
+  firePoint: {fileID: 967933822}
+  missilePrefab: {fileID: 8902226305329291046, guid: aca5e6ca8f17f9d46b797f494f70044a, type: 3}
+--- !u!54 &539428506 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3429563490633156397, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
+  m_PrefabInstance: {fileID: 66088594}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &687205481 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8230911844885547497, guid: f6bbdb80b8858b542a35255ad23f2efd, type: 3}
@@ -274,6 +303,11 @@ PrefabInstance:
 Camera:
   m_CorrespondingSourceObject: {fileID: 3410662801760884700, guid: c98a0f57a2a31db43a0bc830862bf98f, type: 3}
   m_PrefabInstance: {fileID: 2909293355510200811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &967933822 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 644522057370531543, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
+  m_PrefabInstance: {fileID: 66088594}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1005817600 stripped
 GameObject:
@@ -459,8 +493,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6553816822766741386, guid: ce41c71b5eaf8984d8cce740be1a4d0c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553816822766741386, guid: ce41c71b5eaf8984d8cce740be1a4d0c, type: 3}
       propertyPath: tankSpeed
-      value: 28
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6553816822766741386, guid: ce41c71b5eaf8984d8cce740be1a4d0c, type: 3}
       propertyPath: angleThreshold
@@ -593,6 +631,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e30c034b773515a4ab3b37ffcc4f5e2c, type: 3}
+--- !u!4 &1720378884 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2414714373277650101, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
+  m_PrefabInstance: {fileID: 66088594}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1724907011
 PrefabInstance:
   m_ObjectHideFlags: 0
