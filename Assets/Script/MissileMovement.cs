@@ -5,7 +5,6 @@ public class MissileMovementReflect : MonoBehaviour
     [SerializeField] public float speed = 10f;
     [SerializeField] public int nbRebond = 1;
     private Vector3 currentDirection;
-    
 
     void Start()
     {
@@ -44,7 +43,12 @@ public class MissileMovementReflect : MonoBehaviour
                 currentDirection = Vector3.Reflect(currentDirection, collision.contacts[0].normal).normalized;
             }
         }
-        else
+        else if (collision.gameObject.tag == "Tank")
+        {
+            Destroy(gameObject);
+            ChangeLevel.UpdateNbEnnemies();
+        }
+        else if (collision.gameObject.tag != "Hole")
         {
             Destroy(gameObject);
         }

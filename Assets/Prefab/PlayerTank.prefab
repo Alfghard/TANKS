@@ -41,15 +41,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.57
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.57
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.57
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.71
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -119,6 +119,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4979280830913594187}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3448086897208999451}
   m_SourcePrefab: {fileID: 100100000, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
 --- !u!4 &2414714373277650101 stripped
 Transform:
@@ -194,9 +197,21 @@ MonoBehaviour:
   turret: {fileID: 2414714373277650101}
   firePoint: {fileID: 644522057370531543}
   missilePrefab: {fileID: 8902226305329291046, guid: aca5e6ca8f17f9d46b797f494f70044a, type: 3}
-  tankSpeed: 35
+  tankSpeed: 33
   angleThreshold: 30
   tankSmoothness: 0.03
   turretSmoothness: 0.05
   shootThreshold: 0.5
   Plan: {fileID: 0}
+--- !u!114 &3448086897208999451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657801216042311275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 574818f723f0e7d459dac7f72b459d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
