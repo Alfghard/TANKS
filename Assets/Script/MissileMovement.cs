@@ -43,6 +43,11 @@ public class MissileMovementReflect : MonoBehaviour
                 currentDirection = Vector3.Reflect(currentDirection, collision.contacts[0].normal).normalized;
             }
         }
+        else if (collision.gameObject.tag == "Tank")
+        {
+            Destroy(gameObject);
+            ChangeLevel.UpdateNbEnnemies();
+        }
         else if (collision.gameObject.tag != "Hole")
         {
             Destroy(gameObject);

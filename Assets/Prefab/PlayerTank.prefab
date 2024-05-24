@@ -119,6 +119,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4979280830913594187}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3448086897208999451}
   m_SourcePrefab: {fileID: 100100000, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
 --- !u!4 &2414714373277650101 stripped
 Transform:
@@ -200,3 +203,15 @@ MonoBehaviour:
   turretSmoothness: 0.05
   shootThreshold: 0.5
   Plan: {fileID: 0}
+--- !u!114 &3448086897208999451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4657801216042311275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 574818f723f0e7d459dac7f72b459d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
