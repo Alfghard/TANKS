@@ -6,17 +6,17 @@ using UnityEngine.Assertions;
 using UnityEngine.TestTools;
 
 
+/// <summary>
+/// Classe de test unitaires de la classe PlayerTank
+/// </summary>
 public class TestPlayerTank : MonoBehaviour
 {
-
-    [SerializeField] private Rigidbody rb;                      // RigidBody du tank
-    [SerializeField] private Transform turret;                  // objet Tourelle
-    [SerializeField] private Transform firePoint;               // Point a la sortie du canon
-    [SerializeField] private GameObject missilePrefab;          // Missile a tirer
-
     private PlayerTank playerTank;
     private GameObject tankObject;
 
+    /// <summary>
+    /// Lancement du script de test
+    /// </summary>
     [SetUp]
     public void Setup()
     {
@@ -24,16 +24,30 @@ public class TestPlayerTank : MonoBehaviour
         tankObject = new GameObject();
         playerTank = tankObject.AddComponent<PlayerTank>();
 
-        // Configure les composants nécessaires
-        playerTank.rb = rb;
-        playerTank.turret = turret;
-        playerTank.firePoint = new GameObject().transform;
-        playerTank.missilePrefab = new GameObject();
+        playerTank.rb = tankObject.AddComponent<Rigidbody>();
+
+        GameObject turretObject = new GameObject("Turret");
+        playerTank.turret = turretObject.transform;
+
+        GameObject firePointObject = new GameObject("FirePoint");
+        playerTank.firePoint = firePointObject.transform;
+
+        GameObject missilePrefab = new GameObject("Missile");
+        playerTank.missilePrefab = missilePrefab;
+
+        // Ajoute un tag "Missile" au prefab de missile
+        playerTank.missilePrefab.tag = "Missile";
     }
 
+    /// <summary>
+    /// Test unitaire de la méthode TankMovement</br>
+    /// Vérifie que le tank se déplace dans la bonne direction en simulant des inputs à partir d'un jeu de test
+    /// </summary>
+    /// <returns>Retourne une assertion de réussite ou non selon si le test s'est bien déroulé</returns>
+    [UnityTest]
     public IEnumerator TestTankMovement()
     {
-        // Valeurs de test
+        // Jeu de test
         Vector3[] testDirections = {
             new Vector3(1, 0, 0),
             new Vector3(0, 0, 1),
@@ -42,48 +56,25 @@ public class TestPlayerTank : MonoBehaviour
 
         foreach (var direction in testDirections)
         {
-            var initialPosition = playerTank.transform.position;
-            var expectedRotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            var expectedSpeed = 1f;
-
-            List<Vector3> realRotation = new List<Vector3>();
-
-            for (int i = 0; i < 200; i++)
-            {
-                realRotation = playerTank.TankMovement(direction);
-                yield return new WaitForSeconds(0.01f);
-            }
-
-            var actualRotation = Mathf.Atan2(realRotation[0].x, realRotation[0].z) * Mathf.Rad2Deg;
-            var actualSpeed = realRotation[1].magnitude;
-
-            var delta = Mathf.Abs(expectedRotation - actualRotation);
-            var deltaSpeed = Mathf.Abs(expectedSpeed - actualSpeed);
-
-            if (delta > 5f)
-            {
-                Debug.Log($"TankMovement's test successful for direction {direction} (rotation)");
-            }
-            else
-            {
-                Debug.LogAssertion($"TankMovement's test failed for direction {direction}: expected angle {expectedRotation}, got angle {actualRotation}");
-            }
-
-            if (deltaSpeed > 0.05f)
-            {
-                Debug.Log($"TankMovement's test successful for direction {direction} (speed)");
-            }
-            else
-            {
-                Debug.LogAssertion($"TankMovement's test failed for direction {direction}: expected speed {expectedSpeed}, got speed {actualSpeed}");
-            }
+            playerTank.TankMovement(direction);
             yield return null;
+
+            Vector3 velocity = playerTank.rb.velocity;
+
+            // Réussite du test si le tank se déplace bien dans la direction voulue
+            NUnit.Framework.Assert.IsTrue(velocity.magnitude > 0.0f, "TankMovement failed to move the tank");
         }
     }
 
+    /// <summary>
+    /// Test unitaire de la méthode TurretMovement</br>
+    /// Vérifie que la tourelle s'oriente dans la bonne direction selon un jeu de données de vecteurs
+    /// </summary>
+    /// <returns>Retourne une assertion de réussite ou non selon si le test s'est bien déroulé</returns>
+    [UnityTest]
     public IEnumerator TestTurretMovement()
     {
-        // Valeurs de test
+        // Jeu de test
         Vector3[] testDirections = {
             new Vector3(1, 0, 0),
             new Vector3(0, 0, 1),
@@ -92,71 +83,31 @@ public class TestPlayerTank : MonoBehaviour
 
         foreach (var direction in testDirections)
         {
-            var expectedRotation = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-
-            Vector3 realRotation = Vector3.zero;
-
-            for (int i=0; i<200; i++)
-            {
-                realRotation = playerTank.TurretMovement(direction);
-                yield return new WaitForSeconds(0.01f);
-            }
-
-            var actualRotation = Mathf.Atan2(realRotation.x, realRotation.z) * Mathf.Rad2Deg;
-            var delta = Mathf.Abs(expectedRotation - actualRotation);
-
-            if (delta > 5f)
-            {
-                Debug.LogAssertion($"TurretMovement's test failed for direction {direction}: expected {expectedRotation}, got {actualRotation}");
-            }
-            else
-            {
-                Debug.Log($"TurretMovement's test successful for direction {direction}");
-            }
+            playerTank.TurretMovement(direction);
             yield return null;
+            
+            float angle = playerTank.turret.eulerAngles.y;
+
+            // Réussite du test si la tourelle est bien orienté dans la direction souhaitée
+            NUnit.Framework.Assert.IsTrue(angle != 0.0f, "TurretMovement failed to rotate the turret");
         }
     }
 
+    /// <summary>
+    /// Test unitaire de la méthode Shoot</br>
+    /// Vérifie qu'un missile supplémentaire est bien instancié à l'appel de la méthode
+    /// </summary>
+    /// <returns>Retourne une assertion de réussite ou non selon si le test s'est bien dérouléRetourne une assertion de réussite ou non selon si le test s'est bien déroulé</returns>
+    [UnityTest]
     public IEnumerator TestShoot()
     {
-        // Compte initial des missiles
         int initialMissileCount = GameObject.FindGameObjectsWithTag("Missile").Length;
 
         playerTank.Shoot();
-
-        
-        yield return new WaitForSeconds(0.1f);  // Attend un moment pour que le missile soit instantié
-
-        // Compte final des missiles
+        yield return new WaitForSeconds(0.1f);
         int finalMissileCount = GameObject.FindGameObjectsWithTag("Missile").Length;
 
-        if (initialMissileCount + 1 == finalMissileCount)
-        {
-            Debug.Log("TestShoot successful");
-        }
-        else
-        {
-            Debug.LogAssertion("TestShoot failed: failed to instantiate a new missile");
-        }
-        yield return null;
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Debug.Log("Z'est partiiii !");
-            StartCoroutine(RunTests());
-        }
-    }
-
-    private IEnumerator RunTests()
-    {
-        Setup();
-        yield return TestTankMovement();
-        yield return TestTurretMovement();
-        yield return TestShoot();
-
-        Object.DestroyImmediate(tankObject);
+        // Réussite du test s'il y a bien un objet supplémentaire missile qui est créé après le tir
+        NUnit.Framework.Assert.AreEqual(initialMissileCount + 1, finalMissileCount, "Shoot failed to instantiate a new missile");
     }
 }

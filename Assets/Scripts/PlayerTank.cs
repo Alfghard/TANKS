@@ -5,6 +5,9 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 
+/// <summary>
+/// Classe gérant les intéractions avec le tank du joueur
+/// </summary>
 public class PlayerTank : MonoBehaviour
 {
     // Rigid body, Transforms et GameObject
@@ -35,11 +38,11 @@ public class PlayerTank : MonoBehaviour
         Physics.gravity = new Vector3(0, -1000, 0);
     }
 
-    
+    /// <summary>
+    /// Boucle de jeu gérant entre autre les entrées clavier et/ou manette, et lance les scripts de mouvements et de tir
+    /// </summary>
     void Update()
     {    
-
-       
         bool paused = Pause.isGamePaused();    //Récupère la valeur de paused
         if (!paused) {
 
@@ -81,17 +84,23 @@ public class PlayerTank : MonoBehaviour
         }
     }
 
-    public List<Vector3> TankMovement(Vector3 direction)
+    /// <summary>
+    /// Déplace le tank dans la direction demandée</br>
+    /// Crée la logique de déplacement en deux temps :
+    /// <ol>
+    ///   <li>Ajuste la rotation du tank si celui-ci n'est pas orienté dans la même direction que le déplacement et l'empêche d'avancer</li>
+    ///   <li>Si la rotation du tank selon la direction demandée est compris dans l'angle de seuil, alors le déplacement du tank est enclenché</li>
+    /// </ol>
+    /// </summary>
+    /// <param name="direction">Vecteur indiquant la direction vers laquelle se déplacer</param>
+    public void TankMovement(Vector3 direction)
     {
-        float angle = transform.eulerAngles.y;
-        Vector3 move = Vector3.zero;
-
         // N'ex�cute le mouvement que si une norme minimale de direction est enclench�e (zone morte)
         if (direction.magnitude >= 0.1f)
         {
             // Calcule l'angle de rotation necessaire pour faire face a la directione
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref baseCurrentSpeed, tankSmoothness);
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref baseCurrentSpeed, tankSmoothness);
             Quaternion tankAngle = Quaternion.Euler(0f, angle, 0f);
 
             // Applique les rotations
@@ -105,14 +114,19 @@ public class PlayerTank : MonoBehaviour
                 float norme = Mathf.Min(direction.magnitude, 1f);
 
                 // D�place le rigid body 
-                move = transform.forward * (float)norme * tankSpeed;
+                Vector3 move = transform.forward * (float)norme * tankSpeed;
                 rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
             }
         }
-        return new List<Vector3>{ new Vector3(0f, angle, 0f), move };
     }
 
-    public Vector3 TurretMovement(Vector3 shootDir)
+    /// <summary>
+    /// Déclenche le mouvement de la tourelle</br>
+    /// Calcule l'angle de rotation de la tourelle à partir du vecteur des coordonnées X et Y du joystick 
+    /// et effectue la rotation à partir d'une fonction qui s'assure que le mouvement ne soit pas brusque
+    /// </summary>
+    /// <param name="shootDir">Vecteur des coordonnées en X et Y du joystick</param>
+    public void TurretMovement(Vector3 shootDir)
     {
         if (shootDir.magnitude >= 0.1f)
         {
@@ -125,35 +139,12 @@ public class PlayerTank : MonoBehaviour
             // Applique la rotation vers l'angle cible
             turret.rotation = Quaternion.Euler(0f, turretAngle, 0f);
         }
-
-        return turret.rotation.eulerAngles;
     }
 
-    //private void TurretMovement_Souris()
-    //{
-    //    Vector3 screenPosition;
-    //    Vector3 worldPosition;
-
-
-    //    screenPosition = Input.mousePosition;
-    //    screenPosition.z = Camera.main.nearClipPlane + 1;
-
-    //    worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-
-    //     Vector3 direction = turret.position - worldPosition;
-    //     direction.z += direction.y*Mathf.Cos(60 * Mathf.Deg2Rad);
-    //     //direction.x += direction.y*Mathf.Sin(60 * Mathf.Deg2Rad);
-     
-    //    Vector3 projection = Vector3.ProjectOnPlane(direction, Plan.transform.up);
-    
-    //    turret.rotation = Quaternion.LookRotation(projection);
-    //    //Debug.Log(direction);
-    //    //Debug.Log(projection);
-    
-    //}
-
-
-
+    /// <summary>
+    /// Lance un tir du tank<\br>
+    /// Instancie un objet missile à la sortie du canon et oriente le missile correctement
+    /// </summary>
     public void Shoot()
     {
         GameObject missile = Instantiate(missilePrefab, firePoint.position, firePoint.rotation);
