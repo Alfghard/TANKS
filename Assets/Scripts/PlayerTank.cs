@@ -25,12 +25,13 @@ public class PlayerTank : MonoBehaviour
     [SerializeField] private float turretSmoothness = 0.05f;    // Temps d'execution de la rotation de la tourelle
     [SerializeField] private float shootThreshold = 0.5f;       // Seuil d'activation du tir du bouton R2 entre 0 compris et 1 non compris                 
 
+
     // Variables d'etats (ne pas toucher)
     private float turretAngle;                  // Etat de l'angle de la tourelle
     private float baseCurrentSpeed = 0f;        // Etat de la vitesse angulaire de la base du tank
     private float turretCurrentSpeed = 0f;      // Etat de la vitesse angulaire de la tourelle du tank
     private float shootTriggerAxis = 0f;        // Etat de la valeur precedente de l'axe du bouton R2
-
+    internal static bool ControlManette;
 
     void Start()
     {
@@ -60,8 +61,17 @@ public class PlayerTank : MonoBehaviour
 
             Vector3 shootDir = new Vector3(rJoyX, 0f, rJoyY);
 
-            TurretMovement(shootDir);   // Mecanisme de rotation de la tourelle du tank
-            //TurretMovement_Souris();  // Mecanisme de rotation de la tourelle du tank avec la souris
+            //Permet de choisir les contrôles voulues
+            if(ControlManette)  
+            {
+                TurretMovement(shootDir);   // Mecanisme de rotation de la tourelle du tank
+            }
+            else
+            {
+                TurretMovement_Souris();  // Mecanisme de rotation de la tourelle du tank avec la souris
+            }
+            
+            
 
             // Si le bouton RTrigger est enclenche
             if (Input.GetButton("Fire"))
@@ -145,6 +155,26 @@ public class PlayerTank : MonoBehaviour
     /// Lance un tir du tank<\br>
     /// Instancie un objet missile à la sortie du canon et oriente le missile correctement
     /// </summary>
+
+    private void TurretMovement_Souris()
+    {   //gère les commandes avec la souris
+        Vector3  mouseInScreen = Input.mousePosition;
+    
+        mouseInScreen.z = mouseInScreen.y;
+        //Centrage
+        mouseInScreen.x += -950;
+        mouseInScreen.z += -500;
+        //Rescale
+        mouseInScreen = mouseInScreen/36;
+        mouseInScreen.y= 1.07F;
+        //tilted
+        mouseInScreen.z = mouseInScreen.z * Mathf.Cos(mouseInScreen.z * Mathf.Deg2Rad);
+        mouseInScreen.z = mouseInScreen.z * 1.5F - 2;
+
+        Vector3 direction = turret.position - mouseInScreen;
+        turret.rotation = Quaternion.LookRotation(direction);
+
+    }
     public void Shoot()
     {
         GameObject missile = Instantiate(missilePrefab, firePoint.position, firePoint.rotation);
