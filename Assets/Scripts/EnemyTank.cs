@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyTank : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;                // RigidBody du tank
+    [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform turret;            // Objet Tourelle
     [SerializeField] private Transform firePoint;         // Point de tir
     [SerializeField] private GameObject missilePrefab;    // Prefab du missile
     [SerializeField] private float detectionRange = 50f;  // Portée de détection du joueur
-    [SerializeField] private float tankSpeed = 35f;       // Vitesse de déplacement du tank
     [SerializeField] private float angleThreshold = 60f;  // Angle de liberté pour autoriser le déplacement
     [SerializeField] private float tankSmoothness = 0.12f;// Temps de rotation du tank
     [SerializeField] private float turretSmoothness = 0.05f; // Temps de rotation de la tourelle
     [SerializeField] private float fireInterval = 3f;     // Intervalle de tir
-    [SerializeField] private float minMoveSpeed = 5f;
 
     private Transform playerTank;                         // Référence au tank du joueur
     private float fireTimer = 0;
@@ -102,12 +102,8 @@ public class EnemyTank : MonoBehaviour
         float angleToTarget = Vector3.Angle(transform.forward, direction);
         if (angleToTarget < angleThreshold)
         {
-            // Calcule la norme de la vitesse entre 0 et 1 selon l'inclinaison du joystick
-            float norme = Mathf.Min(direction.magnitude, 1f);
-
-            // Applique la vitesse minimale pour éviter le patinage
-            Vector3 move = direction * Mathf.Max(norme * tankSpeed, minMoveSpeed);
-            rb.velocity = new Vector3(move.x, rb.velocity.y, move.z);
+            agent.stoppingDistance = 10;
+            agent.SetDestination(playerTank.position); //Utilise NavMesh pour se déplacer vers le joueur
         }
         else
         {
