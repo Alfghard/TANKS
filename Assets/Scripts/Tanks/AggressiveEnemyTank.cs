@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyTank : MonoBehaviour
+public class AggressiveEnemyTank : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;                // RigidBody du tank
     [SerializeField] private NavMeshAgent agent;
@@ -53,26 +53,28 @@ public class EnemyTank : MonoBehaviour
             float distanceToPlayer = Vector3.Distance(transform.position, playerTank.position);
             if (distanceToPlayer <= detectionRange)
             {
-                MoveTowardsPlayer();
-                TurretMovement();
+                TankFunctions.MoveTowardsPlayer(transform, playerTank, baseCurrentSpeed, tankSmoothness, rb, angleThreshold, agent);
+                TankFunctions.TurretMovementTowardPlayer(playerTank, turret, turretCurrentSpeed, turretSmoothness);
+
                 fireTimer += Time.deltaTime;
                 if (fireTimer >= fireInterval)
                 {
-                    Shoot();
+                    TankFunctions.Shoot(missilePrefab, firePoint);
                     fireTimer = 0;
                 }
             }
             else
             {
-                Patrol();
+                TankFunctions.Patrol(transform, false, 20);
             }
         }
         else {
             agent.velocity = new Vector3(0,0,0);
         }
     }
+    
 
-    public void OnCollisionEnter(Collision collision)   // Destruction du tank lors de la collision avec un Missile
+    private void OnCollisionEnter(Collision collision)   // Destruction du tank lors de la collision avec un Missile
     {
         if (collision.gameObject.CompareTag("Missile") | collision.gameObject.CompareTag("MissilePlayer"))
         {
@@ -80,66 +82,4 @@ public class EnemyTank : MonoBehaviour
         }
     }
 
-    private void Patrol()
-    {
-        // Logique de patrouille simple : tourner sur place
-        transform.Rotate(0, 20 * Time.deltaTime, 0);
-    }
-
-    private void MoveTowardsPlayer()
-    {
-        // Calcule la direction vers le joueur
-        Vector3 direction = (playerTank.position - transform.position).normalized;
-
-        // Calcule l'angle de rotation nécessaire pour faire face à la direction
-        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref baseCurrentSpeed, tankSmoothness);
-
-        // Fait pivoter le tank
-        rb.MoveRotation(Quaternion.Euler(0f, angle, 0f));
-
-        // Recalcule la direction après la rotation pour s'assurer qu'il se déplace vers le joueur
-        direction = (playerTank.position - transform.position).normalized;
-
-        // Vérifie si le tank est orienté presque dans la bonne direction
-        float angleToTarget = Vector3.Angle(transform.forward, direction);
-        if (angleToTarget < angleThreshold)
-        {
-            agent.stoppingDistance = 10;
-            agent.SetDestination(playerTank.position); //Utilise NavMesh pour se déplacer vers le joueur
-        }
-        else
-        {
-            // Réduit progressivement la vitesse jusqu'à ce que le tank soit réaligné
-            rb.velocity = rb.velocity * 0.9f;
-        }
-    }
-
-
-
-    private void TurretMovement()
-    {
-        // Calcule la direction vers le joueur
-        Vector3 direction = turret.position - playerTank.position;
-
-        // Vérifie si la direction est suffisante pour enclencher le mouvement
-        if (direction.magnitude >= 0.1f)
-        {
-            // Calcule l'angle cible basé sur la direction vers le joueur
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-
-            // Obtient l'angle actuel de la tourelle et le lisse pour suivre la cible
-            turretAngle = Mathf.SmoothDampAngle(turret.eulerAngles.y, targetAngle, ref turretCurrentSpeed, turretSmoothness);
-
-            // Applique la rotation vers l'angle cible
-            turret.rotation = Quaternion.Euler(0f, turretAngle, 0f);
-        }
-    }
-
-
-    private void Shoot()
-    {
-        // Instantiate un missile et le tire
-        GameObject missile = Instantiate(missilePrefab, firePoint.position, firePoint.rotation);
-    }
 }

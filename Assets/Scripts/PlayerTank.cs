@@ -76,14 +76,12 @@ public class PlayerTank : MonoBehaviour
             
             
             UpdateNbMissiles();
-            Debug.Log(nbMissiles);
             // Si le bouton RTrigger est enclenche
             if (nbMissiles < 5) {
                 if (Input.GetButton("Fire"))
                 {
                     // Calcul de l'activation du tir à la moitié de la pression du bouton
                     float normShootAxis = (Input.GetAxis("RTrigger") + 1) / 2;
-                    Debug.Log($"normShootAxis: {normShootAxis}");
 
                     // Tire si l'axe du bouton depasse le seuil fixé
                     if (shootTriggerAxis <= shootThreshold && normShootAxis > shootThreshold)
