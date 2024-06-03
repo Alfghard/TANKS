@@ -8,6 +8,8 @@ public class ChangeLevel : MonoBehaviour
     private static int nbEnnemies = 0;
     private static GameObject[] EnnTab;
     [SerializeField] private string SceneName;
+
+    private static float timer;
     
     void Start()
     {
@@ -16,7 +18,7 @@ public class ChangeLevel : MonoBehaviour
 
     static void TestChangeScene(string SceneName)
     {
-        if (nbEnnemies == 0)
+        if (nbEnnemies == 0) 
         {
             SceneManager.LoadScene(SceneName);
         }
@@ -35,8 +37,8 @@ public class ChangeLevel : MonoBehaviour
 
     void Update()
     {
+
         UpdateNbEnnemies();
         TestChangeScene(SceneName);
-        Debug.Log(nbEnnemies);
     }
 }
