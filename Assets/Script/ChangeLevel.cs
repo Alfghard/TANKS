@@ -37,6 +37,6 @@ public class ChangeLevel : MonoBehaviour
     {
         UpdateNbEnnemies();
         TestChangeScene(SceneName);
-        Debug.Log(nbEnnemies);
+        //Debug.Log(nbEnnemies);
     }
 }

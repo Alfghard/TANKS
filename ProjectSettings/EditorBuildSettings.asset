@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scene/Levels/Control_menu.unity
     guid: 76dc47351cc64c647b05480c6ff22d55
   - enabled: 1
-    path: Assets/Scene/Levels.unity
-    guid: 1c4d29d2d86bb9d40913e78508afe65d
-  - enabled: 1
     path: Assets/Scene/Levels/Level 1.unity
     guid: e0426e8f9c44aaa499a2374fbe1966e1
   - enabled: 1
@@ -24,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scene/Levels/Level 3.unity
     guid: 4244a7a08a6a62f4ab713f4ea0861704
   - enabled: 1
-    path: Assets/Scene/Levels/Level 4.unity
-    guid: 601675cdf6f47f9409143daa0ad836b1
+    path: Assets/Scene/Levels/GameOverScreen.unity
+    guid: b275fda18b841794388e0d7205e9ed0d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 59de3c40c7eb03d4f990007fc9d4aad7, type: 2}

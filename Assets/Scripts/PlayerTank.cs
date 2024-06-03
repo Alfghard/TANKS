@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.SceneManagement;
+using UnityEditor;
 
 
 /// <summary>
@@ -162,8 +164,8 @@ public class PlayerTank : MonoBehaviour
     
         mouseInScreen.z = mouseInScreen.y;
         //Centrage
-        mouseInScreen.x += -950;
-        mouseInScreen.z += -500;
+        mouseInScreen.x += -930;
+        mouseInScreen.z += -490;
         //Rescale
         mouseInScreen = mouseInScreen/36;
         mouseInScreen.y= 1.07F;
@@ -179,5 +181,15 @@ public class PlayerTank : MonoBehaviour
     {
         GameObject missile = Instantiate(missilePrefab, firePoint.position, firePoint.rotation);
         missile.transform.Rotate(180f, 0, 0);
+    }
+
+    public void OnCollisionEnter(Collision collision)   // Destruction du tank lors de la collision avec un Missile
+    {
+        if (collision.gameObject.CompareTag("Missile"))
+        {
+            Destroy(gameObject);
+            Debug.Log("joueur mort");
+            SceneManager.LoadScene("GameOverScreen");
+        }
     }
 }
