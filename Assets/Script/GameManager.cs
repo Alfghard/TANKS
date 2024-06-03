@@ -5,14 +5,18 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance; // Singleton instance
 
-    public Text scoreText;    // Référence au texte du score
-    public Text timerText;    // Référence au texte du chronomètre
+    public Text scoreText;    // RÃ©fÃ©rence au texte du score
+    public Text timerText;    // RÃ©fÃ©rence au texte du chronomÃ¨tre
     private int score = 0;    // Variable pour stocker le score
-    private float timer = 0f; // Variable pour stocker le temps écoulé
+    private float timer = 0f; // Variable pour stocker le temps  Ã©coulÃ© 
+    private static int nbEnnemiesAvant ; // variable pour stocker le nombre d'ennemis  prÃ©cÃ©dents
+    private static GameObject[] EnnTab;
+
+    
 
     void Awake()
     {
-        // Si une instance existe déjà et n'est pas celle-ci, détruisez cette instance
+        // Si une instance existe dÃ©jÃ   et n'est pas celle-ci, dÃ©truisez cette instance
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
@@ -28,13 +32,45 @@ public class GameManager : MonoBehaviour
     {
         UpdateScoreText();
         UpdateTimerText();
+        nbEnnemiesAvant = UpdateNbEnnemies();
     }
 
     void Update()
     {
-        // Met à jour le chronomètre
-        timer += Time.deltaTime;
-        UpdateTimerText();
+        bool paused = Pause.isGamePaused();    //RÃ©cupÃ¨re la valeur de paused
+        if (!paused) {
+            // Met   jour le chronom tre
+            timer += Time.deltaTime;
+            UpdateTimerText();
+            UpdateNbEnnemies();
+            int ecart = TestUpdateScore(); //VÃ©rifie si un Tank ennemi a Ã©tÃ© tuÃ©
+            if (ecart>0){
+                AddScore(ecart*10);
+            }
+        }
+    }
+
+    static int TestUpdateScore()
+    {
+        int current = UpdateNbEnnemies();
+        int ecart = 0;
+        if (nbEnnemiesAvant != current)
+        {   
+            ecart = nbEnnemiesAvant - current;
+            nbEnnemiesAvant = nbEnnemiesAvant - ecart; //devrait Ãªtre Ã©gal Ã  current
+        }
+        return ecart;
+
+    }
+
+    public static int UpdateNbEnnemies()
+    {
+        EnnTab = GameObject.FindGameObjectsWithTag("Tank");
+        int nbEnnemies = 0;
+        foreach(GameObject Enn in EnnTab) {
+            nbEnnemies += 1;
+        }
+        return nbEnnemies;
     }
 
     public void AddScore(int points)

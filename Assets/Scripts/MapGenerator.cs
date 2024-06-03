@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class MapGenerator : MonoBehaviour
@@ -16,22 +17,22 @@ public class MapGenerator : MonoBehaviour
     private int rows = 16;
     private int cols = 22;
 
-    private int xOrigin = -21;  // Coordonnée en X d'origine
-    private int zOrigin = 13;   // Coordonnée en Z d'origine
+    private int xOrigin = -21;  // Coordonnï¿½e en X d'origine
+    private int zOrigin = 13;   // Coordonnï¿½e en Z d'origine
     private int xStep = 2;      // Pas sur X
     private int zStep = -2;     // Pas sur Z
-    private int yHeight = 1;    // Hauteur en Y des éléments à placer
+    private int yHeight = 1;    // Hauteur en Y des ï¿½lï¿½ments ï¿½ placer
 
-    // Seed statique de la sélection des murs afin qu'un même niveau soit toujours généré de manière identique
+    // Seed statique de la sï¿½lection des murs afin qu'un mï¿½me niveau soit toujours gï¿½nï¿½rï¿½ de maniï¿½re identique
     private int seed = 42;
 
     private void Start()
     {
-        // Création d'une nouvelle scène
+        // Crï¿½ation d'une nouvelle scï¿½ne
         //Scene level1 = SceneManager.CreateScene("Level1");
         //SceneManager.LoadScene("Levels");
 
-        // Basculer vers la nouvelle scène
+        // Basculer vers la nouvelle scï¿½ne
         //SceneManager.SetActiveScene(level1);
 
         Random.InitState(seed);
@@ -41,17 +42,17 @@ public class MapGenerator : MonoBehaviour
 
     private void CreateAndSwitchScene()
     {
-        // Création d'une nouvelle scène
+        // Crï¿½ation d'une nouvelle scï¿½ne
         Scene level1 = SceneManager.CreateScene("Level1");
 
-        // Basculer vers la nouvelle scène
+        // Basculer vers la nouvelle scï¿½ne
         SceneManager.SetActiveScene(level1);
 
-        // Ajout d'un objet de base pour démonstration
+        // Ajout d'un objet de base pour dï¿½monstration
         //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         //cube.transform.position = Vector3.zero;
 
-        // Vous pouvez ici ajouter votre logique de génération de niveau
+        // Vous pouvez ici ajouter votre logique de gï¿½nï¿½ration de niveau
         //GenerateLevel();
     }
 
@@ -72,7 +73,7 @@ public class MapGenerator : MonoBehaviour
         string levelText = levelData.text;
         Debug.Log(levelText);
         string[] lines = levelText.Split('\n');
-        Debug.Log($"'{lines[0]}', {lines[0].Length} caractères");
+        Debug.Log($"'{lines[0]}', {lines[0].Length} caractï¿½res");
         if (lines.Length != rows)
         {
             Debug.LogError($"Level file does not match expected number of rows. ({lines.Length} found, {rows} expected)");
@@ -117,8 +118,8 @@ public class MapGenerator : MonoBehaviour
         // set up the camera
         //if (mainCamera != null)
         //{
-        //    mainCamera.transform.position = new Vector3(0, 16.6f, -17.3f); // Positionnement de la caméra
-        //    mainCamera.transform.eulerAngles = new Vector3(45, 0, 0);      // Caméra en contre-plongée
+        //    mainCamera.transform.position = new Vector3(0, 16.6f, -17.3f); // Positionnement de la camï¿½ra
+        //    mainCamera.transform.eulerAngles = new Vector3(45, 0, 0);      // Camï¿½ra en contre-plongï¿½e
         //}
     }
 }
