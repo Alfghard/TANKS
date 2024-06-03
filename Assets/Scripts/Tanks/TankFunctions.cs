@@ -25,7 +25,7 @@ public class TankFunctions : MonoBehaviour
         else {transform.Rotate(0, speed * Time.deltaTime, 0);}
     }
 
-    public static void MoveTowardsPlayer(Transform transform, Transform playerTank, float baseCurrentSpeed, float tankSmoothness, Rigidbody rb, 
+    public static void MoveTowardPlayer(Transform transform, Transform playerTank, float baseCurrentSpeed, float tankSmoothness, Rigidbody rb, 
     float angleThreshold, NavMeshAgent agent)
     {
         // Calcule la direction vers le joueur
@@ -43,6 +43,7 @@ public class TankFunctions : MonoBehaviour
 
         // Vérifie si le tank est orienté presque dans la bonne direction
         float angleToTarget = Vector3.Angle(transform.forward, direction);
+
         if (angleToTarget < angleThreshold)
         {
             agent.stoppingDistance = 10;
@@ -53,6 +54,22 @@ public class TankFunctions : MonoBehaviour
             // Réduit progressivement la vitesse jusqu'à ce que le tank soit réaligné
             rb.velocity = rb.velocity * 0.9f;
         }
+    }
+
+    public static void MovePerpendicularPlayer(Transform transform, Transform playerTank, float baseCurrentSpeed, float tankSmoothness, Rigidbody rb, 
+    float angleThreshold, NavMeshAgent agent)
+    {
+        // Calcule la direction vers le joueur
+        Vector3 direction = (playerTank.position - transform.position).normalized;
+
+        // Calcule l'angle de rotation nécessaire pour faire face à la direction
+        float targetAngle = (Mathf.Atan2(direction.x, direction.z) + 90)* Mathf.Rad2Deg;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref baseCurrentSpeed, tankSmoothness);
+        
+        Vector3 target = new Vector3(playerTank.position.x*Mathf.Cos(90), playerTank.position.y*Mathf.Sin(90), playerTank.position.z);
+
+        agent.stoppingDistance = 0;
+        agent.SetDestination(target); //Utilise NavMesh pour se déplacer vers le joueur
     }
 
 

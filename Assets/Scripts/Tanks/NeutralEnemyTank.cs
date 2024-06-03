@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AggressiveEnemyTank : MonoBehaviour
+public class NeutralEnemyTank : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;                // RigidBody du tank
     [SerializeField] private NavMeshAgent agent;
@@ -19,6 +19,8 @@ public class AggressiveEnemyTank : MonoBehaviour
 
     private Transform playerTank;                         // Référence au tank du joueur
     private float fireTimer = 0;
+    private float behaviourTimer;
+    private bool focusTowardPlayer;
     private float baseCurrentSpeed = 0f;                  // État de la vitesse angulaire de la base du tank
     private float turretAngle;                            // État de l'angle de la tourelle
     private float turretCurrentSpeed = 0f;                // État de la vitesse angulaire de la tourelle
@@ -50,26 +52,34 @@ public class AggressiveEnemyTank : MonoBehaviour
         bool paused = Pause.isGamePaused();    // Récupère la valeur de paused
         if (!paused)
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, playerTank.position);
-            if (distanceToPlayer <= detectionRange)
-            {
-                TankFunctions.MoveTowardPlayer(transform, playerTank, baseCurrentSpeed, tankSmoothness, rb, angleThreshold, agent);
-                TankFunctions.TurretMovementTowardPlayer(playerTank, turret, turretCurrentSpeed, turretSmoothness);
+            
+            TankFunctions.TurretMovementTowardPlayer(playerTank, turret, turretCurrentSpeed, turretSmoothness);
 
-                fireTimer += Time.deltaTime;
-                if (fireTimer >= fireInterval)
-                {
-                    TankFunctions.Shoot(missilePrefab, firePoint);
-                    fireTimer = 0;
-                }
+            fireTimer += Time.deltaTime;
+            behaviourTimer -= Time.deltaTime;
+
+            if (behaviourTimer <= 0) {
+                focusTowardPlayer = Random.value > 0.5;
+                print(focusTowardPlayer);
+                behaviourTimer = Random.Range(3f, 5f);
             }
-            else
+
+            if (focusTowardPlayer) {
+                TankFunctions.MoveTowardPlayer(transform, playerTank, baseCurrentSpeed, tankSmoothness, rb, angleThreshold, agent); 
+            }
+            else {
+                TankFunctions.MovePerpendicularPlayer(transform, playerTank, baseCurrentSpeed, tankSmoothness, rb, angleThreshold, agent); 
+            }
+
+            if (fireTimer >= fireInterval)
             {
-                TankFunctions.Patrol(transform, false, 20);
+                TankFunctions.Shoot(missilePrefab, firePoint);
+                fireTimer = 0;
             }
         }
         else {
-            agent.velocity = new Vector3(0,0,0);
+            //agent.velocity = new Vector3(0,0,0);
+            TankFunctions.MovePerpendicularPlayer(transform, playerTank, baseCurrentSpeed, tankSmoothness, rb, angleThreshold, agent);
         }
     }
     

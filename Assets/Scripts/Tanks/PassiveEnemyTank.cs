@@ -10,7 +10,7 @@ public class PassiveEnemyTank : MonoBehaviour
     [SerializeField] private Transform turret;            // Objet Tourelle
     [SerializeField] private Transform firePoint;         // Point de tir
     [SerializeField] private GameObject missilePrefab;    // Prefab du missile
-    [SerializeField] private float turretSmoothness = 0.5f; // Temps de rotation de la tourelle
+    //[SerializeField] private float turretSmoothness = 0.5f; // Temps de rotation de la tourelle
     [SerializeField] private float fireInterval = 3f;     // Intervalle de tir
 
     private Transform playerTank;                         // Référence au tank du joueur
@@ -19,7 +19,7 @@ public class PassiveEnemyTank : MonoBehaviour
     private bool randomTurretDir;
     private float randomTurretSpeed;
     private float turretAngle;                            // État de l'angle de la tourelle
-    private float turretCurrentSpeed = 0f;                // État de la vitesse angulaire de la tourelle
+    //private float turretCurrentSpeed = 0f;                // État de la vitesse angulaire de la tourelle
 
     void Start()
     {
