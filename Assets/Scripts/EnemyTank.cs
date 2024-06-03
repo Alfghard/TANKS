@@ -178,7 +178,7 @@ public class EnemyTank : MonoBehaviour
         RaycastHit hit;
         Vector3 direction =  firePoint.position - turret.position ; 
         Ray ray = new Ray(turret.position, direction);
-        Debug.DrawRay(turret.position, direction*20, Color.red );
+        //Debug.DrawRay(turret.position, direction*20, Color.red ); //Permet de voir les rayons lasers
         
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer_ennemi)){
             dist_ennemi = hit.distance;
