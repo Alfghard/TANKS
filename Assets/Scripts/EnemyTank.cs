@@ -74,7 +74,7 @@ public class EnemyTank : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)   // Destruction du tank lors de la collision avec un Missile
     {
-        if (collision.gameObject.CompareTag("Missile"))
+        if (collision.gameObject.CompareTag("Missile") | collision.gameObject.CompareTag("MissilePlayer"))
         {
             Destroy(gameObject);
         }

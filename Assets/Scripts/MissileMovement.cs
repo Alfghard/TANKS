@@ -46,7 +46,6 @@ public class MissileMovement : MonoBehaviour
         else if (collision.gameObject.tag == "Tank")
         {
             Destroy(gameObject);
-            //ChangeLevel.UpdateNbEnnemies();
         }
         else if (collision.gameObject.tag != "Hole")
         {

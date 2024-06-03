@@ -208,7 +208,7 @@ MonoBehaviour:
   rb: {fileID: 3429563490633156397}
   turret: {fileID: 2414714373277650101}
   firePoint: {fileID: 644522057370531543}
-  missilePrefab: {fileID: 8902226305329291046, guid: aca5e6ca8f17f9d46b797f494f70044a, type: 3}
+  missilePrefab: {fileID: 8902226305329291046, guid: f274724dd67a21a4d8b1a08d4221f80c, type: 3}
   tankSpeed: 33
   angleThreshold: 30
   tankSmoothness: 0.03

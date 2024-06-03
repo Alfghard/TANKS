@@ -33,6 +33,9 @@ public class PlayerTank : MonoBehaviour
     private float shootTriggerAxis = 0f;        // Etat de la valeur precedente de l'axe du bouton R2
     internal static bool ControlManette;
 
+    private static int nbMissiles = 0;
+    private static GameObject[] EnnTab;
+
     void Start()
     {
         turretAngle = turret.eulerAngles.y;
@@ -72,24 +75,27 @@ public class PlayerTank : MonoBehaviour
             }
             
             
-
+            UpdateNbMissiles();
+            Debug.Log(nbMissiles);
             // Si le bouton RTrigger est enclenche
-            if (Input.GetButton("Fire"))
-            {
-                // Calcul de l'activation du tir à la moitié de la pression du bouton
-                float normShootAxis = (Input.GetAxis("RTrigger") + 1) / 2;
-                Debug.Log($"normShootAxis: {normShootAxis}");
-
-                // Tire si l'axe du bouton depasse le seuil fixé
-                if (shootTriggerAxis <= shootThreshold && normShootAxis > shootThreshold)
+            if (nbMissiles < 5) {
+                if (Input.GetButton("Fire"))
                 {
-                    Shoot();            // Mecanisme de tir
+                    // Calcul de l'activation du tir à la moitié de la pression du bouton
+                    float normShootAxis = (Input.GetAxis("RTrigger") + 1) / 2;
+                    Debug.Log($"normShootAxis: {normShootAxis}");
+
+                    // Tire si l'axe du bouton depasse le seuil fixé
+                    if (shootTriggerAxis <= shootThreshold && normShootAxis > shootThreshold)
+                    {
+                        Shoot();            // Mecanisme de tir
+                    }
+                    shootTriggerAxis = normShootAxis;
                 }
-                shootTriggerAxis = normShootAxis;
-            }
-            else if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
-            {
-                Shoot();
+                else if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+                {
+                    Shoot();
+                }
             }
         }
     }
@@ -103,6 +109,17 @@ public class PlayerTank : MonoBehaviour
     /// </ol>
     /// </summary>
     /// <param name="direction">Vecteur indiquant la direction vers laquelle se déplacer</param>
+    
+    public static void UpdateNbMissiles()
+    {
+        EnnTab = GameObject.FindGameObjectsWithTag("MissilePlayer");
+        nbMissiles = 0;
+        foreach(GameObject Enn in EnnTab) {
+            nbMissiles += 1;
+        }
+        return;
+    }
+    
     public void TankMovement(Vector3 direction)
     {
         // N'ex�cute le mouvement que si une norme minimale de direction est enclench�e (zone morte)
