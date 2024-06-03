@@ -67,6 +67,7 @@ public class EnemyTank : MonoBehaviour
         int layer = RayCheckForward();
 
         bool paused = Pause.isGamePaused();    // Récupère la valeur de paused
+        
         if (!paused)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, playerTank.position);
@@ -75,7 +76,7 @@ public class EnemyTank : MonoBehaviour
                 MoveTowardsPlayer();
                 TurretMovement();
                 fireTimer += Time.deltaTime;
-                Debug.Log(layer);
+                //Debug.Log(layer);
                 if (layer == layer_wall) {}
                 else if (layer == layer_ennemi){}
                 else if (layer == layer_joueur){
