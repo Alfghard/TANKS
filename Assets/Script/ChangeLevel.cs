@@ -20,6 +20,10 @@ public class ChangeLevel : MonoBehaviour
     {
         if (nbEnnemies == 0) 
         {
+            bool paused = Pause.isGamePaused();    // Récupère la valeur de paused
+            if (SceneName == "VictoryScreen") {
+                Pause.changePauseState();
+            }
             SceneManager.LoadScene(SceneName);
         }
         return;

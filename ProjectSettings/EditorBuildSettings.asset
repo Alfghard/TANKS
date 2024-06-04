@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/Scene/Levels/Level 8.unity
     guid: af756679bfea55c4b8d9aef205a20804
   - enabled: 1
+    path: Assets/Scene/Levels/VictoryScreen.unity
+    guid: f88f33a8f67af574fad241ab87559b6f
+  - enabled: 1
     path: Assets/Scene/Levels/GameOverScreen.unity
     guid: b275fda18b841794388e0d7205e9ed0d
   m_configObjects:

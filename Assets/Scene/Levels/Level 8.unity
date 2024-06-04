@@ -2948,7 +2948,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3448086897208999451, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
       propertyPath: SceneName
-      value: Level 9
+      value: VictoryScreen
       objectReference: {fileID: 0}
     - target: {fileID: 4657801216042311275, guid: 2064ec7cb5ce7114eb2ec4b7e3094539, type: 3}
       propertyPath: m_Name
