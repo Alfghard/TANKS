@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -79,12 +80,21 @@ public class GameManager : MonoBehaviour
         UpdateScoreText();
     }
 
+    public void ResetScore(){
+        score = 0;
+        print("Score Resetted");
+    }
+
+    public void ResetTimer(){
+        timer = 0;
+        print("timer Resetted");
+    }
+
     private void UpdateScoreText()
     {
         if (scoreText != null)
         {
             scoreText.text = "Score: " + score.ToString();
-            print(score);
         }
     }
 
