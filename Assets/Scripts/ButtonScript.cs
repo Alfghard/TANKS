@@ -8,6 +8,8 @@ public class SceneChanger : MonoBehaviour
 	public void ChangeSceneButton(string sceneName)
 	{
 		SceneManager.LoadScene(sceneName);
+		bool paused = Pause.isGamePaused();
+        if (paused) { Pause.changePauseState(); }
 	}
 	public void Exit()
 	{
