@@ -105,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_Name
-      value: ennemy tank
+      value: Aggressive tank
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_Layer
@@ -132,9 +132,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6553816822766741386}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5800401138308648085}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       insertIndex: -1
@@ -142,34 +139,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 874522263948182824}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8570906071207158493}
   m_SourcePrefab: {fileID: 100100000, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
 --- !u!1 &4463159503286197198 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
   m_PrefabInstance: {fileID: 3544678402588239519}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6553816822766741386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4463159503286197198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b07c26ff9c7e9e04f9e5d6ccf69b7b95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 4589837558072299899}
-  agent: {fileID: 874522263948182824}
-  turret: {fileID: 6688214337106168080}
-  firePoint: {fileID: 3891746481775780507}
-  missilePrefab: {fileID: 8902226305329291046, guid: aca5e6ca8f17f9d46b797f494f70044a, type: 3}
-  detectionRange: 50
-  angleThreshold: 60
-  tankSmoothness: 0.12
-  turretSmoothness: 0.05
-  fireInterval: 3
 --- !u!65 &5800401138308648085
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -240,6 +218,28 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8570906071207158493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4463159503286197198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07c26ff9c7e9e04f9e5d6ccf69b7b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 4589837558072299899}
+  agent: {fileID: 874522263948182824}
+  turret: {fileID: 6688214337106168080}
+  firePoint: {fileID: 3891746481775780507}
+  missilePrefab: {fileID: 8902226305329291046, guid: aca5e6ca8f17f9d46b797f494f70044a, type: 3}
+  detectionRange: 50
+  angleThreshold: 60
+  tankSmoothness: 0.12
+  turretSmoothness: 0.05
+  fireInterval: 3
 --- !u!4 &6688214337106168080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1305914445823332465, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
