@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 310631745667484550}
   - component: {fileID: 2288810090557280216}
   m_Layer: 0
-  m_Name: Missile
+  m_Name: FastMissile
   m_TagString: Missile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3e5572c737d674cbc9b17012077284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  nbRebond: 1
+  speed: 20
+  nbRebond: 0
 --- !u!65 &310631745667484550
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -161,6 +161,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e587eb796fb833649960c22430843b7f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 84b96689333eac741899993f0bddac49, type: 2}
     - target: {fileID: 919132149155446097, guid: e587eb796fb833649960c22430843b7f, type: 3}
       propertyPath: m_Name
       value: missile

@@ -98,14 +98,14 @@ PrefabInstance:
     - target: {fileID: -7939587002309309268, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 87c08528584391d469666c6d1e55ae17, type: 2}
+      objectReference: {fileID: 2100000, guid: 84b96689333eac741899993f0bddac49, type: 2}
     - target: {fileID: -2143324488837601770, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_Name
-      value: ennemy tank
+      value: FastBulletsTank
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_Layer
@@ -118,7 +118,7 @@ PrefabInstance:
     - target: {fileID: 4531912228224351498, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 87c08528584391d469666c6d1e55ae17, type: 2}
+      objectReference: {fileID: 2100000, guid: 84b96689333eac741899993f0bddac49, type: 2}
     - target: {fileID: 7953606483559150473, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -132,44 +132,19 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6553816822766741386}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5800401138308648085}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4589837558072299899}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 874522263948182824}
+      addedObject: {fileID: 4631212773237215297}
   m_SourcePrefab: {fileID: 100100000, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
 --- !u!1 &4463159503286197198 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
   m_PrefabInstance: {fileID: 3544678402588239519}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6553816822766741386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4463159503286197198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b07c26ff9c7e9e04f9e5d6ccf69b7b95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 4589837558072299899}
-  agent: {fileID: 874522263948182824}
-  turret: {fileID: 6688214337106168080}
-  firePoint: {fileID: 3891746481775780507}
-  missilePrefab: {fileID: 8902226305329291046, guid: aca5e6ca8f17f9d46b797f494f70044a, type: 3}
-  detectionRange: 50
-  angleThreshold: 60
-  tankSmoothness: 0.12
-  turretSmoothness: 0.05
-  fireInterval: 3
 --- !u!65 &5800401138308648085
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -218,28 +193,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!195 &874522263948182824
-NavMeshAgent:
+--- !u!114 &4631212773237215297
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4463159503286197198}
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9964a338611e8b0499a70fd84a17b36d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 4589837558072299899}
+  turret: {fileID: 6688214337106168080}
+  firePoint: {fileID: 3891746481775780507}
+  missilePrefab: {fileID: 8902226305329291046, guid: adfe44edb2d7758458f67e57d1195b1c, type: 3}
+  fireInterval: 3
 --- !u!4 &6688214337106168080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1305914445823332465, guid: 88f31901eca082f4383ea40c37074b2c, type: 3}
