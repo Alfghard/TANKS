@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class TankFunctions : MonoBehaviour
 {
+    float angle;
 
     void Start()
     {
@@ -33,17 +34,9 @@ public class TankFunctions : MonoBehaviour
     }
 
     public static void MovePerpendicularPlayer(Transform transform, Transform playerTank, float baseCurrentSpeed, float tankSmoothness, Rigidbody rb, 
-    float angleThreshold, NavMeshAgent agent)
+    float angleThreshold, NavMeshAgent agent, Vector3 target)
     {
         // Calcule la direction vers le joueur
-        Vector3 direction = (playerTank.position - transform.position).normalized;
-
-        // Calcule l'angle de rotation nécessaire pour faire face à la direction
-        float targetAngle = (Mathf.Atan2(direction.x, direction.z) + 90)* Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref baseCurrentSpeed, tankSmoothness);
-        
-        Vector3 target = new Vector3(playerTank.position.x*Mathf.Cos(90), playerTank.position.y*Mathf.Sin(90), playerTank.position.z);
-
         agent.stoppingDistance = 0;
         agent.SetDestination(target); //Utilise NavMesh pour se déplacer vers le joueur
     }
