@@ -2470,6 +2470,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseManagement
       objectReference: {fileID: 0}
+    - target: {fileID: 1846337461707859222, guid: 51eb6d432d1ffa64d85406db473217c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846337461707859222, guid: 51eb6d432d1ffa64d85406db473217c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: changePauseState
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846337461707859222, guid: 51eb6d432d1ffa64d85406db473217c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Pause, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846337461707859222, guid: 51eb6d432d1ffa64d85406db473217c3, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8783407286138973141, guid: 51eb6d432d1ffa64d85406db473217c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.7

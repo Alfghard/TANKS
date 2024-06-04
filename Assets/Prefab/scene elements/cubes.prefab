@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4066526116032097099}
   - component: {fileID: 7171365342669373470}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cubesColliderUp
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8574897749533071920}
   - component: {fileID: 5062343788549461701}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cubesColliderRight
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7295321703451234675}
   - component: {fileID: 2640131234638976525}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cubesColliderLeft
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2229787873743107185}
   - component: {fileID: 6074760475176318923}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cubesColliderDown
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -271,6 +271,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 47cda90f495ed994ca6729e60e8a8ec7, type: 3}
       propertyPath: m_Name
       value: cubes
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 47cda90f495ed994ca6729e60e8a8ec7, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 47cda90f495ed994ca6729e60e8a8ec7, type: 3}
       propertyPath: m_TagString

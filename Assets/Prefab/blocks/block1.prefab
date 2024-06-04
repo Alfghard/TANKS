@@ -57,6 +57,10 @@ PrefabInstance:
       value: block1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4348a6b93da7d8b4187e6332367aff67, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4348a6b93da7d8b4187e6332367aff67, type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
